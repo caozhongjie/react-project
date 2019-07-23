@@ -105,7 +105,7 @@ module.exports = function(webpackEnv) {
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize(),
           ],
-          sourceMap: isEnvProduction && shouldUseSourceMap,
+          sourceMap: isEnvProduction && shouldUseSourceMap
         },
       },
     ].filter(Boolean);
@@ -114,6 +114,10 @@ module.exports = function(webpackEnv) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
+          javascriptEnabled: true,
+          modifyVars: {
+            "primary-color": "#f9c700"
+          }
         },
       });
     }
@@ -356,6 +360,8 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+          
+                  [require.resolve('babel-plugin-import'), { libraryName: 'antd', style: 'css' }]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
