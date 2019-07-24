@@ -360,8 +360,11 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-          
-                  [require.resolve('babel-plugin-import'), { libraryName: 'antd', style: 'css' }]
+                  [
+                    'import',{
+                      libraryName: 'antd', style: true
+                    }
+                  ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -431,20 +434,26 @@ module.exports = function(webpackEnv) {
             {
               test: lessRegex,
               exclude: lessModuleRegex,
-              use: getStyleLoaders({
+              use: getStyleLoaders(
+              {
                 importLoaders: 2,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
-              }),
+              },
+              'less-loader'
+              ),
               sideEffects: true,
             },
             {
               test: lessModuleRegex,
-              use: getStyleLoaders({
+              use: getStyleLoaders(
+              {
                 importLoaders: 2,
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
-              }),
+              },
+              'less-loader'
+              ),
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the

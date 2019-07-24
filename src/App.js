@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.less';
-import {Button} from 'antd'
+import './public/css/App.less'
+import Admin from './admin'
 function App() {
   return (
     <div className="App">
-      <h3>react</h3>
-      <Button>1111111</Button>
+     <Admin></Admin>
     </div>
   );
 }
