@@ -35,10 +35,10 @@ class NavLeft extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="left-bar">
                 <div className="logo">Logo</div>
                 <div className="nav"></div>
-                <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256, height: '100vh' }} mode="vertical">
+                <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256 }} mode="vertical">
                     {this.state.MenuNode}
                 </Menu>
             </div>
