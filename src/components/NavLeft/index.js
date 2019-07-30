@@ -2,7 +2,23 @@ import React from 'react'
 import { Menu, Icon } from 'antd';
 import MeunList from '../../resource/navdata'
 import './index.less'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
+// const routes = [
+//     {
+//       path: "/",
+//       exact: true,
+//       main: () => <h2>Home</h2>
+//     },
+//     {
+//       path: "/bubblegum",
+//       main: () => <h2>Bubblegum</h2>
+//     },
+//     {
+//       path: "/shoelaces",
+//       main: () => <h2>Shoelaces</h2>
+//     }
+//   ];
 class NavLeft extends React.Component {
     constructor(props) {
         super(props)
@@ -12,36 +28,40 @@ class NavLeft extends React.Component {
     }
     componentWillMount() {
         const nodeTree = this.renderMenu(MeunList)
+        console.log(MeunList)
         this.setState({
             MenuNode: nodeTree
         })
     }
     renderMenu = (data) => {
-      return  data.map((item) => {
+        return data.map((item) => {
             if (item.children) {
-                return (   
-                    <SubMenu key={item.key}  title={item.title}>
-                        {this.renderMenu(item.children)}
+                return (
+                    <SubMenu key={item.key} title={item.title}>
+                       {this.renderMenu(item.children)}
                     </SubMenu>
                 )
             }
             return (
-                <Menu.Item key={item.key}>{item.title}</Menu.Item>
+                <Menu.Item key={item.key}> <Link to={item.key}>{item.title}</Link></Menu.Item>
             )
         })
     }
+
     handleClick(e) {
         console.log('click', e);
     }
     render() {
         return (
-            <div className="left-bar">
-                <div className="logo">Logo</div>
-                <div className="nav"></div>
-                <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256 }} mode="vertical">
-                    {this.state.MenuNode}
-                </Menu>
-            </div>
+            <Router>
+                <div className="left-bar">
+                    <div className="logo">Logo</div>
+                    <div className="nav"></div>
+                    <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256 }} mode="vertical">
+                        {this.state.MenuNode}
+                    </Menu>
+                </div>
+            </Router>
         )
     }
 }

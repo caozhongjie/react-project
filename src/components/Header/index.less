@@ -1,15 +1,31 @@
 .header{
-    padding: 10px 20px;
+    padding: 10px 0px 0 0;
     .header-top{
         text-align: right;
-        border-bottom: 1px solid yellow;
+        padding: 0 20px;
+        border-bottom: 1px solid #d7d7d7;
         span{
             margin-right: 40px
         }
     }
     .header-bottom{
+        border-bottom: 1px solid #d7d7d7;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
         .header-bottom-left{
             text-align: center;
+            position: relative;
+            &:after{
+                position: absolute;
+                content: '';
+                border-top: 16px solid rgb(224, 221, 221);
+                border-left: 22px solid transparent;
+                border-right: 22px solid transparent;
+                top: 39px;
+                left: 70px;
+                z-index: 10;
+            }
             span{
                 font-size: 18px;
             }
