@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Icon } from 'antd';
 import MeunList from '../../resource/navdata'
 import './index.less'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 class NavLeft extends React.Component {
     constructor(props) {
@@ -13,8 +13,6 @@ class NavLeft extends React.Component {
     }
     componentWillMount() {
         const nodeTree = this.renderMenu(MeunList)
-        console.log(33333333)
-        console.log(nodeTree)
         this.setState({
             MenuNode: nodeTree
         })
@@ -39,15 +37,16 @@ class NavLeft extends React.Component {
     }
     render() {
         return (
-            <Router>
+            <HashRouter>
                 <div className="left-bar">
                     <div className="logo">Logo</div>
                     <div className="nav"></div>
                     <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256 }} mode="vertical">
                         {this.state.MenuNode}
                     </Menu>
+        
                 </div>
-            </Router>
+            </HashRouter>
         )
     }
 }

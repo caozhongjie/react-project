@@ -5,8 +5,9 @@ import Footer from './components/Footer'
 import NavLeft from './components/NavLeft'
 import './public/css/admin.less'
 import Home from './page/Home/home'
-import RouterList from './resource/navdata'
-import {BrowserRouter as Router, Route, Link } from "react-router-dom";
+import menuList from './resource/navdata'
+import {HashRouter , Route, Link,Switch } from "react-router-dom";
+import Button from './page/UI/Button'
 class Admin extends React.Component{
     constructor(props) {
         super(props)
@@ -15,9 +16,10 @@ class Admin extends React.Component{
         }
     }
     componentWillMount() {
-        const nodeTreeRoute = this.renderMenu(RouterList)
+        const nodeTreeRoute = this.renderMenu(menuList)
         console.log(11111111111)
         console.log(nodeTreeRoute)
+        console.log(menuList)
         this.setState({
             RouterList: nodeTreeRoute
         })
@@ -28,13 +30,13 @@ class Admin extends React.Component{
             return (
                 <Route path={item.key} key={item.key} component={item.component} />)
             } else {
-                return
+                return ''
             }
         })
     }
     render() {
         return (
-            <Router>
+            <HashRouter>
             <div>
                 <Row className="container">
                     <Col span={4} className="nav-left">
@@ -42,14 +44,15 @@ class Admin extends React.Component{
                     </Col>
                     <Col span={20} className="main">
                         <Header />
-                        <Row>
-                            {this.state.RouterList}
+                        <Row className="right-middle">
+                            <Route path="/home" exact component={Home} />
+                            <Route path="/" exact component={Button} />
                         </Row>
                         <Footer />
                     </Col>
                 </Row>
             </div>
-            </Router>
+            </HashRouter>
         )
     }
 }
