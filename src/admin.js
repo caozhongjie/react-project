@@ -26,7 +26,7 @@ class Admin extends React.Component{
         return data.map((item) => {
             if(item.component) {
             return (
-                <Route path={item.key} component={item.component} />)
+                <Route path={item.key} key={item.key} component={item.component} />)
             } else {
                 return
             }
@@ -34,6 +34,7 @@ class Admin extends React.Component{
     }
     render() {
         return (
+            <Router>
             <div>
                 <Row className="container">
                     <Col span={4} className="nav-left">
@@ -42,12 +43,13 @@ class Admin extends React.Component{
                     <Col span={20} className="main">
                         <Header />
                         <Row>
-                            <Home></Home>
+                            {this.state.RouterList}
                         </Row>
                         <Footer />
                     </Col>
                 </Row>
             </div>
+            </Router>
         )
     }
 }

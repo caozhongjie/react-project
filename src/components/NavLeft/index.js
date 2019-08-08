@@ -13,7 +13,8 @@ class NavLeft extends React.Component {
     }
     componentWillMount() {
         const nodeTree = this.renderMenu(MeunList)
-        console.log(MeunList)
+        console.log(33333333)
+        console.log(nodeTree)
         this.setState({
             MenuNode: nodeTree
         })

@@ -16,30 +16,37 @@ const menuList = [
             {
                 title:'弹框',
                 key:'/ui/modals',
+                component: () => import('../page/UI/modals.js')
             },
             {
                 title:'Loading',
                 key:'/ui/loadings',
+                component: () => import('../page/UI/loadings.js')
             },
             {
                 title:'通知提醒',
                 key:'/ui/notification',
+                component: () => import('../page/UI/notification.js')
             },
             {
                 title:'全局Message',
                 key:'/ui/messages',
+                component: () => import('../page/UI/messages.js')
             },
             {
                 title:'Tab页签',
                 key:'/ui/tabs',
+                component: () => import('../page/UI/tabs.js')
             },
             {
                 title:'图片画廊',
                 key:'/ui/gallery',
+                component: () => import('../page/UI/gallery.js')
             },
             {
                 title:'轮播图',
                 key:'/ui/carousel',
+                component: () => import('../page/UI/carousel.js')
             }
         ]
     },
@@ -50,10 +57,12 @@ const menuList = [
             {
                 title:'登录',
                 key:'/form/login',
+                component: () => import('../page/form/login.js')
             },
             {
                 title:'注册',
                 key:'/form/reg',
+                component: () => import('../page/form/carousel.js')
             }
         ]
     },
