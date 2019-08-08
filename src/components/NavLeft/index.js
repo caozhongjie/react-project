@@ -4,21 +4,6 @@ import MeunList from '../../resource/navdata'
 import './index.less'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const { SubMenu } = Menu;
-// const routes = [
-//     {
-//       path: "/",
-//       exact: true,
-//       main: () => <h2>Home</h2>
-//     },
-//     {
-//       path: "/bubblegum",
-//       main: () => <h2>Bubblegum</h2>
-//     },
-//     {
-//       path: "/shoelaces",
-//       main: () => <h2>Shoelaces</h2>
-//     }
-//   ];
 class NavLeft extends React.Component {
     constructor(props) {
         super(props)

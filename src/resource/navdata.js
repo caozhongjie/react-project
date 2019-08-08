@@ -1,7 +1,8 @@
 const menuList = [
     {
         title:'首页',
-        key:'/home'
+        key:'/home',
+        component: () => import('../page/Home/home.js')
     },
     {
         title:'UI',
@@ -10,6 +11,7 @@ const menuList = [
             {
                 title:'按钮',
                 key:'/ui/buttons',
+                component: () => import('../page/UI/Button.js')
             },
             {
                 title:'弹框',

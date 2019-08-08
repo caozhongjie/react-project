@@ -1,12 +1,16 @@
-import React from 'react';
-import './public/css/App.less'
+import React, {Component} from 'react';
 import Admin from './admin'
-function App() {
-  return (
-    <div className="App">
-     <Admin></Admin>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+                <div>
+                    <Admin></Admin>
+                </div>
+        );
+    }
 }
 
 export default App;

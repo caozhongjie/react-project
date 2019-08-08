@@ -1,16 +1,36 @@
 import React from 'react'
-import {Row, Col} from 'antd'
+import {Row, Col, Menu} from 'antd'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import NavLeft from './components/NavLeft'
 import './public/css/admin.less'
 import Home from './page/Home/home'
+import RouterList from './resource/navdata'
+import {BrowserRouter as Router, Route, Link } from "react-router-dom";
 class Admin extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            msg: 'admin'
+            RouterList: []
         }
+    }
+    componentWillMount() {
+        const nodeTreeRoute = this.renderMenu(RouterList)
+        console.log(11111111111)
+        console.log(nodeTreeRoute)
+        this.setState({
+            RouterList: nodeTreeRoute
+        })
+    }
+    renderMenu = (data) => {
+        return data.map((item) => {
+            if(item.component) {
+            return (
+                <Route path={item.key} component={item.component} />)
+            } else {
+                return
+            }
+        })
     }
     render() {
         return (
@@ -27,7 +47,7 @@ class Admin extends React.Component{
                         <Footer />
                     </Col>
                 </Row>
-            </div>  
+            </div>
         )
     }
 }
