@@ -1,52 +1,62 @@
+import Home from '@/page/Home/home.js'
+import Button from '@/page/UI/Button.js'
+import Modals from '@/page/UI/modals.js'
+import Loadings from '@/page/UI/loadings.js'
+import Notification from '@/page/UI/notification.js'
+import Messages from '@/page/UI/messages.js'
+import Tabs from '@/page/UI/tabs.js'
+import Gallery from '@/page/UI/gallery.js'
+import Carousel from '@/page/UI/carousel.js'
 const menuList = [
     {
         title:'首页',
-        key:'/home',
-        component: () => import('../page/Home/home.js')
+        key:'/admin',
+        exact: true,
+        component:  Home
     },
     {
         title:'UI',
-        key:'/ui',
+        key:'/admin/ui',
         children:[
             {
                 title:'按钮',
-                key:'/ui/buttons',
-                component: () => import('../page/UI/Button.js')
+                key:'/admin/ui/buttons',
+                component: Button
             },
             {
                 title:'弹框',
-                key:'/ui/modals',
-                component: () => import('../page/UI/modals.js')
+                key:'/admin/ui/modals',
+                component: Modals
             },
             {
                 title:'Loading',
-                key:'/ui/loadings',
-                component: () => import('../page/UI/loadings.js')
+                key:'/admin/ui/loadings',
+                component: Loadings
             },
             {
                 title:'通知提醒',
-                key:'/ui/notification',
-                component: () => import('../page/UI/notification.js')
+                key:'/admin/ui/notification',
+                component: Notification
             },
             {
                 title:'全局Message',
-                key:'/ui/messages',
-                component: () => import('../page/UI/messages.js')
+                key:'/admin/ui/messages',
+                component: Messages
             },
             {
                 title:'Tab页签',
-                key:'/ui/tabs',
-                component: () => import('../page/UI/tabs.js')
+                key:'/admin/ui/tabs',
+                component: Tabs
             },
             {
                 title:'图片画廊',
-                key:'/ui/gallery',
-                component: () => import('../page/UI/gallery.js')
+                key:'/admin/ui/gallery',
+                component: Gallery
             },
             {
                 title:'轮播图',
-                key:'/ui/carousel',
-                component: () => import('../page/UI/carousel.js')
+                key:'/admin/ui/carousel',
+                component: Carousel
             }
         ]
     },
@@ -56,13 +66,11 @@ const menuList = [
         children:[
             {
                 title:'登录',
-                key:'/form/login',
-                component: () => import('../page/form/login.js')
+                key:'/admin/form/login'
             },
             {
                 title:'注册',
-                key:'/form/reg',
-                component: () => import('../page/form/carousel.js')
+                key:'/admin/form/reg'
             }
         ]
     },
@@ -72,25 +80,25 @@ const menuList = [
         children:[
             {
                 title:'基础表格',
-                key:'/table/basic',
+                key:'/admin/table/basic',
             },
             {
                 title:'高级表格',
-                key:'/table/high',
+                key:'/admin/table/high',
             }
         ]
     },
     {
         title:'富文本',
-        key:'/rich'
+        key:'/admin/rich'
     },
     {
         title:'城市管理',
-        key:'/city'
+        key:'/admin/city'
     },
     {
         title:'订单管理',
-        key:'/order',
+        key:'/admin/order',
         btnList:[
             {
                 title:'订单详情',
@@ -104,33 +112,33 @@ const menuList = [
     },
     {
         title:'员工管理',
-        key:'/user'
+        key:'/admin/user'
     },
     {
         title:'车辆地图',
-        key:'/bikeMap'
+        key:'/admin/bikeMap'
     },
     {
         title:'图标',
-        key:'/charts',
+        key:'/admin/charts',
         children:[
             {
                 title:'柱形图',
-                key:'/charts/bar'
+                key:'/admin/charts/bar'
             },
             {
                 title:'饼图',
-                key:'/charts/pie'
+                key:'/admin/charts/pie'
             },
             {
                 title:'折线图',
-                key:'/charts/line'
+                key:'/admin/charts/line'
             },
         ]
     },
     {
         title:'权限设置',
-        key:'/permission'
+        key:'/admin/permission'
     },
 ];
 export default menuList;
