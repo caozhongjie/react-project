@@ -1,9 +1,9 @@
 import React from 'react'
-import {Row, Col, Menu} from 'antd'
+import {Row, Col} from 'antd'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import NavLeft from './components/NavLeft'
-import './public/css/admin.less'
+import '@/public/css/admin.less'
 class Admin extends React.Component {
     constructor(props) {
         super(props)

@@ -4,13 +4,13 @@ class Notification extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         };
     }
 
     render() {
         return (
-            <div>
+            <div className="body-inner">
 
             </div>
         );

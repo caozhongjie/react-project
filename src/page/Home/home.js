@@ -1,5 +1,4 @@
 import React from 'react'
-import './home.less'
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -9,11 +8,9 @@ export default class Home extends React.Component {
     }
     render() {
         return (
-                <div className="container-body">
                     <div className="body-inner">
                         <p>111111</p>
                     </div>
-                </div>
         )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Row, Col} from 'antd'
-import './index.less'
+import '@/components/Header/index.less'
 import Unit from '../../unit/index'
 import Axios from '../../axios/index'
 class Header extends React.Component{
@@ -40,7 +40,7 @@ class Header extends React.Component{
                 <Row className="header-top">
                     <Col span={24}>
                         <span>cjz管理后台</span>
-                        <a href="#">退出</a>
+                        <span href="#">退出</span>
                     </Col>
                 </Row>
                 <Row className="header-bottom">
@@ -53,7 +53,7 @@ class Header extends React.Component{
                         <span className="weather-detail">{this.state.weather}</span>
                     </Col>
                 </Row>
-            </div> 
+            </div>
         )
     }
 }

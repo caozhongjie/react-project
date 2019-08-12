@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import menuList from './resource/navdata'
-import Admin from './admin'
-import {HashRouter , Route, Link,Switch } from "react-router-dom";
-import Login from "./page/login/Login";
-import App from './App'
+import menuList from '@/resource/navdata'
+import Admin from '@/admin'
+import {HashRouter , Route, Switch,Redirect } from "react-router-dom";
+import Login from "@/page/login/Login";
+import App from '@/App'
 import NoMatch from '@/page/NoMatch.js'
 class RoutePage extends Component {
     constructor(props) {
@@ -33,6 +33,10 @@ class RoutePage extends Component {
             <HashRouter>
                 <App>
                     <Switch>
+                        {/*默认启动时重定向到home页面*/}
+                    <Route path="/" exact render={()=>
+                        <Redirect to="/admin"></Redirect>
+                    }/>
                     <Route path="/login" component={Login}/>
                     <Route path="/admin" render={()=>
                         <Admin>

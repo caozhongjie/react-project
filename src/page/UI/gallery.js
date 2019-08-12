@@ -10,7 +10,7 @@ class Gallery extends Component {
 
     render() {
         return (
-            <div>
+            <div className="body-inner">
 111111111111
             </div>
         );

@@ -10,7 +10,7 @@ class Carousel extends Component {
 
     render() {
         return (
-            <div>
+            <div className="body-inner">
 111111
             </div>
         );

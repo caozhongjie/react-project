@@ -1,8 +1,8 @@
 import React from 'react'
-import { Menu, Icon } from 'antd';
+import { Menu} from 'antd';
 import MeunList from '../../resource/navdata'
-import './index.less'
-import { HashRouter, Route, Link } from "react-router-dom";
+import '@/components/NavLeft/index.less'
+import { HashRouter, Link } from "react-router-dom";
 const { SubMenu } = Menu;
 class NavLeft extends React.Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class NavLeft extends React.Component {
                     <Menu theme='dark' onClick={this.handleClick.bind(this)} style={{ width: 256 }} mode="vertical">
                         {this.state.MenuNode}
                     </Menu>
-        
+
                 </div>
             </HashRouter>
         )

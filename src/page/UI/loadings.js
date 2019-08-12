@@ -10,7 +10,7 @@ class Loadings extends Component {
 
     render() {
         return (
-            <div>
+            <div className="body-inner">
 111111111111111111111111111111111111111111112222222222222222222222
             </div>
         );
