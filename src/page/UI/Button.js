@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './button.less'
+import '@/page/UI/index.less'
 import { Card, Button, Icon } from 'antd';
 class ButtonComponent extends Component {
     constructor(props) {

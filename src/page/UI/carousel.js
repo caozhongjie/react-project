@@ -1,20 +1,35 @@
 import React, {Component} from 'react';
+import {Carousel, Card} from 'antd';
+import '@/page/UI/index.less'
 
-class Carousel extends Component {
+class CarouselComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     render() {
         return (
             <div className="body-inner">
-111111
+                <Card title={'文字背景轮播'}>
+                    <Carousel>
+                        <div>
+                            <h3>1</h3>
+                        </div>
+                        <div>
+                            <h3>2</h3>
+                        </div>
+                        <div>
+                            <h3>3</h3>
+                        </div>
+                        <div>
+                            <h3>4</h3>
+                        </div>
+                    </Carousel>
+                </Card>
             </div>
         );
     }
 }
 
-export default Carousel;
+export default CarouselComponent;

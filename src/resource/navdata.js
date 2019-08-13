@@ -7,6 +7,11 @@ import Messages from '@/page/UI/messages.js'
 import Tabs from '@/page/UI/tabs.js'
 import Gallery from '@/page/UI/gallery.js'
 import Carousel from '@/page/UI/carousel.js'
+import Login from '@/page/form/login.js'
+import Reg from '@/page/form/reg.js'
+import City from  '@/page/city/city.js'
+import Order from  '@/page/order/order.js'
+import User from  '@/page/user/user.js'
 const menuList = [
     {
         title:'首页',
@@ -39,11 +44,6 @@ const menuList = [
                 component: Notification
             },
             {
-                title:'全局Message',
-                key:'/admin/ui/messages',
-                component: Messages
-            },
-            {
                 title:'Tab页签',
                 key:'/admin/ui/tabs',
                 component: Tabs
@@ -66,11 +66,13 @@ const menuList = [
         children:[
             {
                 title:'登录',
-                key:'/admin/form/login'
+                key:'/admin/form/login',
+                component: Login
             },
             {
                 title:'注册',
-                key:'/admin/form/reg'
+                key:'/admin/form/reg',
+                component: Reg
             }
         ]
     },
@@ -94,11 +96,13 @@ const menuList = [
     },
     {
         title:'城市管理',
-        key:'/admin/city'
+        key:'/admin/city',
+        component: City
     },
     {
         title:'订单管理',
         key:'/admin/order',
+        component: Order,
         btnList:[
             {
                 title:'订单详情',
@@ -112,7 +116,8 @@ const menuList = [
     },
     {
         title:'员工管理',
-        key:'/admin/user'
+        key:'/admin/user',
+        component: User
     },
     {
         title:'车辆地图',
