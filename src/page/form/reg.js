@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, Input, Button, Radio } from 'antd';
+import { Form, Input } from 'antd';
 class Reg extends Component {
     constructor(props) {
         super(props);

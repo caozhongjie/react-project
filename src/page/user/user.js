@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Select, Form, Button, Table, Divider, Tag,Pagination, Modal, Radio} from 'antd'
+import {Card, Select, Form, Button, Table,Pagination, Modal, Radio} from 'antd'
 import '@/page/city/index.less'
 const dataSource = [
     {

@@ -1,126 +1,31 @@
 import React, {Component} from 'react';
-import {Card, Select, Form, Button, Table, Divider, Tag,Pagination, Modal, Radio} from 'antd'
+import {Card, Select, Form, Button, Table, Pagination, Modal, Radio} from 'antd'
 import '@/page/city/index.less'
-import axios from './../../axios/index';
-const dataSource = [
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },{
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    }
-
-
-
-
-
-
-];
-const columns = [
-    {
-        title: '城市Id',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: '城市名称',
-        dataIndex: 'name',
-        key: 'age',
-    },
-    {
-        title: '用车模式',
-        dataIndex: 'address',
-        key: 'address',
-    },
-    {
-        title: '营运模式',
-        dataIndex: 'address',
-        key: 'address1',
-    },{
-        title: '授权加盟商',
-        dataIndex: 'address',
-        key: 'address2',
-    },
-    {
-        title: '城市管理员',
-        dataIndex: 'address',
-        key: 'address',
-    },
-    {
-        title: '城市开通时间',
-        dataIndex: 'address',
-        key: 'address3',
-    },
-    {
-        title: '操作时间',
-        dataIndex: 'address',
-        key: 'address4',
-    },
-    {
-        title: '操作人',
-        dataIndex: 'address',
-        key: 'address5',
-    }
-
-];
+import axios from '@/axios/index';
+import Unitls from '../../unit/index'
 class City extends Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
             value: 1,
-            model: 1
+            model: 1,
+            dataSource: [],
+            page:1,
+            total_count: 20
         };
     }
     componentDidMount(){
         this.requestList();
+    }
+    getNewList=(e)=>{
+        this.setState({
+            page: e
+        },function () {
+            this.requestList()
+        })
+
+       // this.requestList()
     }
     requestList = ()=>{
         let _this = this;
@@ -128,17 +33,24 @@ class City extends Component {
             url: '/open_city',
             data:{
                 params:{
-                    page:1
+                    page:this.state.page
                 }
             }
         }).then((res)=>{
-            console.log(6666)
-            console.log(res)
-            let list = res.result.item_list.map((item, index) => {
-                item.key = index;
-                return item;
-            });
-
+            if(res.code == '0') {
+                var list = res.result.item_list.map((item, index) => {
+                    item.key = index;
+                    return item;
+                });
+                console.log(list)
+                _this.setState({
+                    dataSource: list,
+                    page: res.result.page,
+                    total_count: res.result.total_count
+                })
+            } else {
+                console.log(res)
+            }
         })
     }
     onChange = e => {
@@ -159,14 +71,12 @@ class City extends Component {
             visible: true,
         });
     };
-
     handleOk = e => {
         console.log(e);
         this.setState({
             visible: false,
         });
     };
-
     handleCancel = e => {
         console.log(e);
         this.setState({
@@ -175,6 +85,58 @@ class City extends Component {
     };
     render() {
         const {Option} = Select;
+        const columns=  [
+            {
+                title: '城市Id',
+                dataIndex: 'id'
+            },
+            {
+                title: '城市名称',
+                dataIndex: 'name'
+            },
+            {
+                title: '用车模式',
+                dataIndex: 'mode',
+                render(mode) {
+                    return mode ==1?'停车点':'禁停区'
+                }
+            },
+            {
+                title: '营运模式',
+                dataIndex: 'op_mode',
+                render(op_mode){
+                    return op_mode == 1?'自营':'加盟'
+                }
+            },{
+                title: '授权加盟商',
+                dataIndex: 'franchisee_name'
+            },
+            {
+                title: '城市管理员',
+                dataIndex: 'city_admins',
+                render(arr){
+                    return arr.map((item)=>{
+                        return item.user_name;
+                    }).join(',');
+                }
+            },
+            {
+                title: '城市开通时间',
+                dataIndex: 'open_time'
+            },
+            {
+                title: '操作时间',
+                dataIndex: 'update_time',
+                render(update_time){
+                    return Unitls.formatetime(update_time)
+                }
+            },
+            {
+                title: '操作人',
+                dataIndex: 'sys_user_name'
+            }
+
+        ]
         return (
             <div>
                 <Card>
@@ -249,8 +211,18 @@ class City extends Component {
                             </div>
                         </Modal>
                     </div>
-                    <Table pagination={false} bordered={true} dataSource={dataSource} columns={columns} />
-                    <Pagination defaultCurrent={1} total={50} style={{float:"right"}} />
+                    <Table
+                        style={{height:"85vh",overflowY:"auto"}}
+                        pagination={false}
+                        bordered={true}
+                        dataSource={this.state.dataSource}
+                        columns={columns} />
+                    <Pagination
+                        hideOnSinglePage={true}
+                        onChange={this.getNewList}
+                        current={this.state.page}
+                        total={this.state.total_count}
+                        style={{float:"right"}} />
                 </Card>
             </div>
         );
