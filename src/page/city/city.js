@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card, Select, Form, Button, Table, Divider, Tag,Pagination, Modal, Radio} from 'antd'
 import '@/page/city/index.less'
+import axios from './../../axios/index';
 const dataSource = [
     {
         key: '1',
@@ -117,6 +118,28 @@ class City extends Component {
             value: 1,
             model: 1
         };
+    }
+    componentDidMount(){
+        this.requestList();
+    }
+    requestList = ()=>{
+        let _this = this;
+        axios.ajax({
+            url: '/open_city',
+            data:{
+                params:{
+                    page:1
+                }
+            }
+        }).then((res)=>{
+            console.log(6666)
+            console.log(res)
+            let list = res.result.item_list.map((item, index) => {
+                item.key = index;
+                return item;
+            });
+
+        })
     }
     onChange = e => {
         this.setState({
