@@ -36,7 +36,7 @@ class Login extends Component {
                         </Form.Item>
                         <Form.Item>
                             <Checkbox>记住我</Checkbox>
-                            <a className="login-form-forgot" href="">忘记密码</a>
+                            <a className="login-form-forgot" href="www.baidu.com">忘记密码</a>
                             <Button type="primary" htmlType="submit" className="login-form-button">Log in</Button>
                         </Form.Item>
                     </Form>

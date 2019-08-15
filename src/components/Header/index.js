@@ -21,13 +21,11 @@ class Header extends React.Component{
         },1000)
        Axios.jsonp({url:'http://api.map.baidu.com/telematics/v3/weather?location=chengdu&output=json&ak=3p49MVra6urFRGOT9s8UBWr2'})
        .then((res)=>{
-           console.log(res)
            this.setState({
                weather: res.results[0].weather_data[0].weather,
                weather_pic: res.results[0].weather_data[0].dayPictureUrl
            })
        }).catch((err)=>{
-           console.log(1)
            console.log(err)
        })
         //  JsonP('http://api.map.baidu.com/telematics/v3/weather?location=chengdu&output=json&ak=3p49MVra6urFRGOT9s8UBWr2',{},function(err,data){

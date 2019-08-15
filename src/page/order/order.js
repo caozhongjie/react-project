@@ -1,111 +1,51 @@
 import React, {Component} from 'react';
-import {Card, Select, Form, Button, Table, Divider, Tag,Pagination, Modal, Radio} from 'antd'
+import {Card, Select, Form, Button, Table, Pagination, Modal, Radio} from 'antd'
 import '@/page/city/index.less'
-const dataSource = [
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },{
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-    }
-
-
-
-
-
-
-];
+import axios from '@/axios/index.js'
 const columns = [
     {
-        title: '城市Id',
-        dataIndex: 'name',
-        key: 'name',
+        title: '订单编号',
+        dataIndex: 'order_sn'
     },
     {
-        title: '城市名称',
-        dataIndex: 'name',
-        key: 'age',
+        title: '车辆编号',
+        dataIndex: 'bike_sn'
     },
     {
-        title: '用车模式',
-        dataIndex: 'address',
-        key: 'address',
+        title: '用户名',
+        dataIndex: 'user_name'
     },
     {
-        title: '营运模式',
-        dataIndex: 'address',
-        key: 'address1',
+        title: '手机号码',
+        dataIndex: 'mobile'
     },{
-        title: '授权加盟商',
-        dataIndex: 'address',
-        key: 'address2',
+        title: '里程',
+        dataIndex: 'distance'
     },
     {
-        title: '城市管理员',
-        dataIndex: 'address',
-        key: 'address',
+        title: '行程时长',
+        dataIndex: 'total_time'
     },
     {
-        title: '城市开通时间',
-        dataIndex: 'address',
-        key: 'address3',
+        title: '状态',
+        dataIndex: 'status'
     },
     {
-        title: '操作时间',
-        dataIndex: 'address',
-        key: 'address4',
+        title: '开始时间',
+        dataIndex: 'start_time'
     },
     {
-        title: '操作人',
-        dataIndex: 'address',
-        key: 'address5',
+        title: '结束时间',
+        dataIndex: 'end_time'
+    },
+    {
+        title: '订单金额',
+        dataIndex: 'total_fee'
+
+    },
+    {
+        title: '实付金额',
+        dataIndex: 'user_pay'
     }
 
 ];
@@ -115,8 +55,42 @@ class Order extends Component {
         this.state = {
             visible: false,
             value: 1,
-            model: 1
+            model: 1,
+            dataSource: [],
+            page: 1,
+            count: 10
         };
+    }
+    componentDidMount() {
+        this.getOrderList()
+    }
+    getOrderList = ()=>{
+       axios.ajax({
+           url: '/order/list',
+           data: {
+               params: {
+                   page: 1
+               }
+           }
+       }).then((res)=>{
+           var list = res.result.item_list
+           list = list.map((item, index)=>{
+                item.key = index;
+                return item
+           })
+           this.setState({
+               dataSource: list,
+               page: res.result.page,
+               count: res.result.total_count
+           })
+       })
+    }
+    getNewList =(e)=>{
+        this.setState({
+            page: e
+        },()=>{
+            this.getOrderList()
+        })
     }
     onChange = e => {
         this.setState({
@@ -138,14 +112,12 @@ class Order extends Component {
     };
 
     handleOk = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
     };
 
     handleCancel = e => {
-        console.log(e);
         this.setState({
             visible: false,
         });
@@ -229,8 +201,8 @@ class Order extends Component {
                             </div>
                         </Modal>
                     </div>
-                    <Table rowSelection={{type:"radio"}} pagination={false} bordered={true} dataSource={dataSource} columns={columns} />
-                    <Pagination defaultCurrent={1} total={50} style={{float:"right"}} />
+                    <Table rowSelection={{type:"radio"}} pagination={false} bordered={true} dataSource={this.state.dataSource} columns={columns} />
+                    <Pagination current={this.state.page} total={this.state.count} style={{float:"right"}} onChange={this.getNewList}/>
                 </Card>
             </div>
         );

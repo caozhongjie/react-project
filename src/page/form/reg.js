@@ -19,12 +19,6 @@ class Reg extends Component {
                     wrapperCol: { span: 14 },
                 }
                 : null;
-        const buttonItemLayout =
-            formLayout === 'horizontal'
-                ? {
-                    wrapperCol: { span: 14, offset: 4 },
-                }
-                : null;
         return (
             <div className={'body-inner'}>
                 <Form layout={formLayout}>

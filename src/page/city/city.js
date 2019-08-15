@@ -24,8 +24,6 @@ class City extends Component {
         },function () {
             this.requestList()
         })
-
-       // this.requestList()
     }
     requestList = ()=>{
         let _this = this;
@@ -37,12 +35,11 @@ class City extends Component {
                 }
             }
         }).then((res)=>{
-            if(res.code == '0') {
+            if(res.code === '0') {
                 var list = res.result.item_list.map((item, index) => {
                     item.key = index;
                     return item;
                 });
-                console.log(list)
                 _this.setState({
                     dataSource: list,
                     page: res.result.page,
@@ -98,14 +95,14 @@ class City extends Component {
                 title: '用车模式',
                 dataIndex: 'mode',
                 render(mode) {
-                    return mode ==1?'停车点':'禁停区'
+                    return mode ===1?'停车点':'禁停区'
                 }
             },
             {
                 title: '营运模式',
                 dataIndex: 'op_mode',
                 render(op_mode){
-                    return op_mode == 1?'自营':'加盟'
+                    return op_mode === 1?'自营':'加盟'
                 }
             },{
                 title: '授权加盟商',
@@ -212,7 +209,7 @@ class City extends Component {
                         </Modal>
                     </div>
                     <Table
-                        style={{height:"85vh",overflowY:"auto"}}
+                        style={{overflowY:"auto"}}
                         pagination={false}
                         bordered={true}
                         dataSource={this.state.dataSource}
