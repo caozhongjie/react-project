@@ -3,6 +3,8 @@ import {Row, Col} from 'antd'
 import '@/components/Header/index.less'
 import Unit from '../../unit/index'
 import Axios from '../../axios/index'
+import { connect } from "react-redux";
+
 class Header extends React.Component{
     constructor(props) {
         super(props)
@@ -43,7 +45,7 @@ class Header extends React.Component{
                 </Row>
                 <Row className="header-bottom">
                     <Col span={4} className="header-bottom-left">
-                        <span>首页</span>
+                        <span>{this.props.menuName} </span>
                     </Col>
                     <Col span={20} className="header-bottom-right">
                         <span className="detail-time">{this.state.systime}</span>
@@ -55,4 +57,9 @@ class Header extends React.Component{
         )
     }
 }
-export default Header
+const mapStateToProps = state => { //每个共享数据的组件都要通过mapStateToProps方法将state映射成自己可接收的props对象,之后通过this.props.menuName直接使用state中的值
+    return {
+        menuName: state.menuName
+    }
+};
+export default connect(mapStateToProps)(Header); //第一个时接受回调方法
